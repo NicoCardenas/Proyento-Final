@@ -74,6 +74,16 @@ public class AgeOfWarGUI extends JFrame{
 				}
 			}
 		);
+		
+		jugar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				jugar.setVisible(false);
+				instructivo.setVisible(false);
+				salida.setVisible(false);
+				menu.setVisible(false);
+				prepararJuego();
+			}
+		});
 	}
 	
 	/**
@@ -125,7 +135,8 @@ public class AgeOfWarGUI extends JFrame{
 	
 	private void prepararMenu() {
 		//
-		menu = new JPanel(new BorderLayout(5, 5));
+		menu = new JPanel(null);
+		menu.setBackground(Color.CYAN);
 		//
 		titulo = new JLabel("POO Age Of War");
 		titulo.setHorizontalAlignment(JLabel.CENTER);	
@@ -134,18 +145,14 @@ public class AgeOfWarGUI extends JFrame{
 		jugar = new JButton("Jugar");
 	    instructivo = new JButton("Instrucciones");
 	    salida = new JButton("Salida");
-	    //Layout
-	    JPanel botones = new JPanel(new GridLayout(3, 1, 5, 5));
+	    // x y w h
+	    jugar.setBounds(porcentaje(ANCHO - porcentaje(ANCHO, 0.1), 0.5), porcentaje(ALTO - porcentaje(ALTO, 0.1), 0.3), porcentaje(ANCHO, 0.1), porcentaje(ALTO, 0.1));
+	    instructivo.setBounds(porcentaje(ANCHO - porcentaje(ANCHO, 0.1), 0.5), porcentaje(ALTO - porcentaje(ALTO, 0.1), 0.42), porcentaje(ANCHO, 0.1), porcentaje(ALTO, 0.1));
+	    salida.setBounds(porcentaje(ANCHO - porcentaje(ANCHO, 0.1), 0.5), porcentaje(ALTO - porcentaje(ALTO, 0.1), 0.54), porcentaje(ANCHO, 0.1), porcentaje(ALTO, 0.1));
 	    //
-	    botones.add(jugar);
-	    botones.add(instructivo);
-	    botones.add(salida);
-	    //
-	    menu.add(titulo, BorderLayout.NORTH);
-	    menu.add(botones,BorderLayout.CENTER);
-	    menu.add(new JPanel(),BorderLayout.EAST);
-	    menu.add(new JPanel(), BorderLayout.WEST);
-	    menu.add(new JPanel(), BorderLayout.SOUTH);
+	    menu.add(jugar);
+	    menu.add(instructivo);
+	    menu.add(salida);
 	    //
 	    setBackground(Color.BLACK);
 	}
