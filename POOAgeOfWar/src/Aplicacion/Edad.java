@@ -1,4 +1,4 @@
-package com.ageoofwar.entidades;
+package Aplicacion;
 
 public enum Edad
 {

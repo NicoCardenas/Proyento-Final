@@ -1,14 +1,13 @@
-package com.ageoofwar.entidades;
+package Aplicacion;
 
-public interface Movimiento
-{
+public interface Movimiento {
 
 	//-------------------
 	//Métodos de acceso
 	//-------------------
 
-	mover()
+	void mover();
 
-	atacar()
+	void atacar();
 
 }

@@ -1,7 +1,6 @@
-package com.ageoofwar.entidades;
+package Aplicacion;
 
-public class Soldado
-{
+public class Soldado {
 
 	//-------------------
 	//Atributos de clase
@@ -17,8 +16,7 @@ public class Soldado
 	//Constructor
 	//-------------------
 
-	public Soldado()
-	{
+	public Soldado()	{
 
 	} 
 	//Soldado
@@ -27,57 +25,52 @@ public class Soldado
 	//Métodos de acceso
 	//-------------------
 
-	public void setPosicion(int posicion)
-	{
+	public void setPosicion(int posicion)	{
 		this.posicion = posicion;
 	}
 
-	public int getPosicion()
-	{
+	public int getPosicion()	{
 		return posicion;
 	}
 
-	public void setAtaque(int ataque)
-	{
+	public void setAtaque(int ataque)	{
 		this.ataque = ataque;
 	}
 
-	public int getAtaque()
-	{
+	public int getAtaque()	{
 		return ataque;
 	}
 
-	public void setSalud(int salud)
-	{
+	public void setSalud(int salud)	{
 		this.salud = salud;
 	}
 
-	public int getSalud()
-	{
+	public int getSalud()	{
 		return salud;
 	}
 
-	public void setDefensa(int defensa)
-	{
+	public void setDefensa(int defensa)	{
 		this.defensa = defensa;
 	}
 
-	public int getDefensa()
-	{
+	public int getDefensa()	{
 		return defensa;
 	} 
 
-	public void setPrecio(int precio)
-	{
+	public void setPrecio(int precio){
 		this.precio = precio;
 	}
-	public int getPrecio()
-	{
+	
+	public int getPrecio(){
 		return precio;
 	}
 
-	mover()
+	void mover(){
+		
+	}
 
-	atacar()
+	void atacar() {
+		
+	}
 
 }

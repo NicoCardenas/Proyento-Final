@@ -1,6 +1,8 @@
 package Presentacion;
 
 import java.awt.Canvas;
+import java.awt.Graphics;
+import java.awt.image.BufferStrategy;
 
 public class AgeOfWarGUI extends Canvas implements Runnable{
 
@@ -8,9 +10,12 @@ public class AgeOfWarGUI extends Canvas implements Runnable{
 	
 	Thread thread;
 	boolean running = false;
+	Handler handler;
 	
 	public AgeOfWarGUI(){
 		Window ventana = new Window("POO Age Of War", this);
+		
+		handler = new Handler();
 	}
 	
 	@Override
@@ -44,11 +49,20 @@ public class AgeOfWarGUI extends Canvas implements Runnable{
 	}
 	
 	private void render() {
+		BufferStrategy bs = this.getBufferStrategy();
+		if (bs.equals(null)) {
+			this.createBufferStrategy(3);
+			return;
+		}
+		Graphics g = bs.getDrawGraphics();
+		handler.render(g);
 		
+		g.dispose();
+		bs.show();
 	}
 
 	private void tick() {
-		
+		handler.tick();
 	}
 
 	public synchronized void start(){
