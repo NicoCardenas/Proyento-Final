@@ -62,13 +62,13 @@ public class Window extends Canvas{
 		ventana.setMaximumSize(new Dimension(ANCHO, ALTO));
 		ventana.setMinimumSize(new Dimension(ANCHO, ALTO));
 		
-		ElementosMenu();
-		ventana.add(juego);
-		
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		ventana.setResizable(false);
 		ventana.setLocationRelativeTo(null);
+		
+		ElementosMenu();
 		ventana.add(juego);
+		
 		ventana.setVisible(true);
 		juego.start();
 	}
@@ -134,7 +134,7 @@ public class Window extends Canvas{
 	}
 
 	//Metodo que retorna el porcentage de un numero entero 
-	private int porcentaje(int numero, double porcentaje) {
+	public int porcentaje(int numero, double porcentaje) {
 		return (int)(numero*porcentaje);
 	}
 	

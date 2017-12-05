@@ -3,6 +3,8 @@ package Presentacion;
 import java.awt.Graphics;
 import java.util.LinkedList;
 
+import Aplicacion.GameObject;
+
 public class Handler {
 	
 	LinkedList<GameObject> objetos = new LinkedList<GameObject>();

@@ -1,8 +1,12 @@
 package Presentacion;
 
 import java.awt.Canvas;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
+
+import Aplicacion.Edad;
+import Aplicacion.HombrePiedra;
 
 public class AgeOfWarGUI extends Canvas implements Runnable{
 
@@ -11,14 +15,15 @@ public class AgeOfWarGUI extends Canvas implements Runnable{
 	Thread thread;
 	boolean running = false;
 	Handler handler;
+	Window ventana;
 	
 	public AgeOfWarGUI(){
-		Window ventana = new Window("POO Age Of War", this);
-		
 		handler = new Handler();
+		ventana = new Window("POO Age Of War", this);		
+		
+		handler.addObject(new HombrePiedra(0 , 100, Edad.EDADPIEDRA));
 	}
 	
-	@Override
 	public void run() {
 		long ultimoTiempo = System.nanoTime();
 		double cantidadTicks = 60.0;
@@ -50,11 +55,16 @@ public class AgeOfWarGUI extends Canvas implements Runnable{
 	
 	private void render() {
 		BufferStrategy bs = this.getBufferStrategy();
-		if (bs.equals(null)) {
+		if (bs == null) {
 			this.createBufferStrategy(3);
 			return;
 		}
+		
 		Graphics g = bs.getDrawGraphics();
+		
+		g.setColor(Color.BLACK);
+		g.fillRect(0, 0, ventana.ANCHO, ventana.ALTO);
+		
 		handler.render(g);
 		
 		g.dispose();
@@ -68,11 +78,13 @@ public class AgeOfWarGUI extends Canvas implements Runnable{
 	public synchronized void start(){
 		thread = new Thread(this);
 		thread.start();
+		running = true;
 	}
 
 	public synchronized void stop(){
 		try {
 			thread.join();
+			running = false;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

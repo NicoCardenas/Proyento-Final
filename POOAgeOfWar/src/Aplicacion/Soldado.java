@@ -1,37 +1,51 @@
 package Aplicacion;
 
-public class Soldado {
+import java.awt.Color;
+import java.awt.Graphics;
+
+
+public abstract class Soldado extends GameObject{
 
 	//-------------------
 	//Atributos de clase
 	//-------------------
 
-	private int posicion;
-	private int ataque;
-	private int salud;
-	private int defensa;
-	private int precio;
+	protected int ataque;
+	protected int salud;
+	protected int defensa;
+	protected int precio;
+	protected int devolucion;
 
 	//-------------------
 	//Constructor
 	//-------------------
 
-	public Soldado()	{
-
+	public Soldado(int x, int y, Edad id)	{
+		super(x, y, id);
+		setVelX(1);
+		setVelY(0);
 	} 
-	//Soldado
+	
+	//------------------
+	//Metodos estaticos
+	//------------------
+	
+	public abstract void mover();
 
-	//-------------------
-	//Métodos de acceso
-	//-------------------
-
-	public void setPosicion(int posicion)	{
-		this.posicion = posicion;
+	public abstract void atacar();
+	
+	public void tick() {
+		mover();
 	}
 
-	public int getPosicion()	{
-		return posicion;
+	public void render(Graphics g) {
+		g.setColor(Color.WHITE);
+		g.fillRect(x, y, 50, 100);
 	}
+
+	//-------------------
+	//Metodos de acceso
+	//-------------------
 
 	public void setAtaque(int ataque)	{
 		this.ataque = ataque;
@@ -64,13 +78,4 @@ public class Soldado {
 	public int getPrecio(){
 		return precio;
 	}
-
-	void mover(){
-		
-	}
-
-	void atacar() {
-		
-	}
-
 }

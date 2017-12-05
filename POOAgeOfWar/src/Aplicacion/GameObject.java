@@ -1,14 +1,14 @@
-package Presentacion;
+package Aplicacion;
 
 import java.awt.Graphics;
 
 public abstract class GameObject {
 	
 	protected int x, y;
-	protected int id;
+	protected Edad id;
 	protected int velX, velY;
 
-	public GameObject(int x, int y, int id) {
+	public GameObject(int x, int y, Edad id) {
 		this.x = x;
 		this.y = y;
 		this.id = id;
@@ -25,7 +25,7 @@ public abstract class GameObject {
 		this.y = y;
 	}
 	
-	public void setId(int id) {
+	public void setId(Edad id) {
 		this.id = id;
 	}
 	
@@ -45,7 +45,7 @@ public abstract class GameObject {
 		return y;
 	}
 	
-	public int getId() {
+	public Edad getId() {
 		return id;
 	}
 	
