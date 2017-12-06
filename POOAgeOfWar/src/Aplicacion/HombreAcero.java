@@ -1,5 +1,7 @@
 package Aplicacion;
 
+import com.sun.javafx.geom.Rectangle;
+
 public class HombreAcero extends Soldado {
 
 	public HombreAcero(int x, int y, Edad id) {
@@ -23,6 +25,16 @@ public class HombreAcero extends Soldado {
 	public void atacar() {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public Rectangle getBonds(){
+		return new Rectangle(x, y);
+	}
+
+	@Override
+	public Rectangle getBounds() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

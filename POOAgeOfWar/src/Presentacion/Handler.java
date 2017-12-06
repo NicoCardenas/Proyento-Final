@@ -7,7 +7,7 @@ import Aplicacion.GameObject;
 
 public class Handler {
 	
-	LinkedList<GameObject> objetos = new LinkedList<GameObject>();
+	public static LinkedList<GameObject> objetos = new LinkedList<GameObject>();
 	
 	public void tick() {
 		for (GameObject gameObject : objetos) {

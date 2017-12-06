@@ -3,14 +3,10 @@ package Presentacion;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.image.BufferStrategy;
-import java.awt.image.ImageObserver;
-import java.awt.image.ImageProducer;
 import java.io.File;
 
 import javax.imageio.ImageIO;
-import javax.imageio.ImageReader;
 
 import Aplicacion.Edad;
 import Aplicacion.HombrePiedra;
@@ -25,7 +21,6 @@ public class AgeOfWarGUI extends Canvas implements Runnable{
 	Window ventana;
 	HUD hudPlayer;
 	HUD hudComputer;
-	boolean fondo = false;
 	
 	public AgeOfWarGUI(){
 		handler = new Handler();
@@ -34,7 +29,7 @@ public class AgeOfWarGUI extends Canvas implements Runnable{
 		hudPlayer = new HUD(100, Window.porcentaje(Window.ANCHO, 0.015), Window.porcentaje(Window.ALTO, 0.05), 15, 100);
 		hudComputer = new HUD(100, Window.porcentaje(Window.ANCHO, 0.96), Window.porcentaje(Window.ALTO, 0.05), 15, 100);
 		
-		handler.addObject(new HombrePiedra(0 , 100, Edad.EDADPIEDRA));
+		handler.addObject(new HombrePiedra(Window.porcentaje(Window.ALTO, 0.05), Window.porcentaje(Window.ALTO, 0.6), Edad.EDADPIEDRA, handler));
 	}
 	
 	public void run() {

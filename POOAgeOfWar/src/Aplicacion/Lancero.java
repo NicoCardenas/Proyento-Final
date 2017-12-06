@@ -1,5 +1,7 @@
 package Aplicacion;
 
+import com.sun.javafx.geom.Rectangle;
+
 public class Lancero extends Soldado {
 
 	public Lancero(int x, int y, Edad id) {
@@ -23,6 +25,12 @@ public class Lancero extends Soldado {
 	public void atacar() {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public Rectangle getBounds() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

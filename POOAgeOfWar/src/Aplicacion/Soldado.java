@@ -2,8 +2,10 @@ package Aplicacion;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 import Presentacion.AgeOfWarGUI;
+import Presentacion.Handler;
 import Presentacion.Window;
 
 
@@ -23,8 +25,8 @@ public abstract class Soldado extends GameObject{
 	//Constructor
 	//-------------------
 
-	public Soldado(int x, int y, Edad id)	{
-		super(x, y, id);
+	public Soldado(int x, int y, Edad id, Handler handler)	{
+		super(x, y, id, handler);
 		setVelX(1);
 		setVelY(0);
 	} 
@@ -46,6 +48,14 @@ public abstract class Soldado extends GameObject{
 	public void render(Graphics g) {
 		g.setColor(Color.WHITE);
 		g.fillRect(x, y, 50, 100);
+	}
+	
+	private void colision(){
+		for (int i = 0; i < handler.objetos.size(); i++) {
+			
+			GameObject tempObjeto = handler.objetos.get(i);
+			
+		}
 	}
 
 	//-------------------

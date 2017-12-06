@@ -1,5 +1,7 @@
 package Aplicacion;
 
+import com.sun.javafx.geom.Rectangle;
+
 public class DinosaurioPiedra extends Soldado{
 
 	public DinosaurioPiedra(int x, int y, Edad id) {
@@ -21,6 +23,12 @@ public class DinosaurioPiedra extends Soldado{
 	@Override
 	public void atacar() {
 		
+	}
+
+	@Override
+	public Rectangle getBounds() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
