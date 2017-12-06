@@ -3,7 +3,14 @@ package Presentacion;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.image.BufferStrategy;
+import java.awt.image.ImageObserver;
+import java.awt.image.ImageProducer;
+import java.io.File;
+
+import javax.imageio.ImageIO;
+import javax.imageio.ImageReader;
 
 import Aplicacion.Edad;
 import Aplicacion.HombrePiedra;
@@ -16,10 +23,16 @@ public class AgeOfWarGUI extends Canvas implements Runnable{
 	boolean running = false;
 	Handler handler;
 	Window ventana;
+	HUD hudPlayer;
+	HUD hudComputer;
+	boolean fondo = false;
 	
 	public AgeOfWarGUI(){
 		handler = new Handler();
-		ventana = new Window("POO Age Of War", this);		
+		ventana = new Window("POO Age Of War", this);	
+		
+		hudPlayer = new HUD(100, Window.porcentaje(Window.ANCHO, 0.015), Window.porcentaje(Window.ALTO, 0.05), 15, 100);
+		hudComputer = new HUD(100, Window.porcentaje(Window.ANCHO, 0.96), Window.porcentaje(Window.ALTO, 0.05), 15, 100);
 		
 		handler.addObject(new HombrePiedra(0 , 100, Edad.EDADPIEDRA));
 	}
@@ -61,11 +74,18 @@ public class AgeOfWarGUI extends Canvas implements Runnable{
 		}
 		
 		Graphics g = bs.getDrawGraphics();
-		
-		g.setColor(Color.BLACK);
-		g.fillRect(0, 0, ventana.ANCHO, ventana.ALTO);
+
+		try {
+			g.drawImage(ImageIO.read(new File("C:/Users/NickZennin/Documents/GitHub/Proyento-Final/POOAgeOfWar/Recursos/fondo.png")), 0, 0, Window.ANCHO, Window.ALTO-100, null);	
+		} catch (Exception e) {
+			g.setColor(Color.BLACK);
+			g.fillRect(0, 0, Window.ANCHO, Window.ALTO);
+		}
 		
 		handler.render(g);
+		
+		hudPlayer.render(g);
+		hudComputer.render(g);
 		
 		g.dispose();
 		bs.show();
@@ -73,6 +93,8 @@ public class AgeOfWarGUI extends Canvas implements Runnable{
 
 	private void tick() {
 		handler.tick();
+		hudPlayer.tick();
+		hudComputer.tick();
 	}
 
 	public synchronized void start(){
@@ -88,6 +110,15 @@ public class AgeOfWarGUI extends Canvas implements Runnable{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public static int clamp(int valor, int min, int max) {
+		if (valor >= max) {
+			valor = max;
+		}else if (valor < min) {
+			valor = min;
+		}
+		return valor;
 	}
 	
 	public static void main(String[] args) {

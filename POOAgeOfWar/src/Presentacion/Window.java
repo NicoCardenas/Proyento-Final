@@ -134,7 +134,7 @@ public class Window extends Canvas{
 	}
 
 	//Metodo que retorna el porcentage de un numero entero 
-	public int porcentaje(int numero, double porcentaje) {
+	public static int porcentaje(int numero, double porcentaje) {
 		return (int)(numero*porcentaje);
 	}
 	

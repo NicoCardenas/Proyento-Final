@@ -3,6 +3,9 @@ package Aplicacion;
 import java.awt.Color;
 import java.awt.Graphics;
 
+import Presentacion.AgeOfWarGUI;
+import Presentacion.Window;
+
 
 public abstract class Soldado extends GameObject{
 
@@ -36,6 +39,8 @@ public abstract class Soldado extends GameObject{
 	
 	public void tick() {
 		mover();
+		
+		x = AgeOfWarGUI.clamp(x, 0, Window.ANCHO-56);
 	}
 
 	public void render(Graphics g) {
