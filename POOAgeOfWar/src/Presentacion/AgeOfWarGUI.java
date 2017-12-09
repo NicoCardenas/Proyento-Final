@@ -82,6 +82,7 @@ public class AgeOfWarGUI extends Canvas implements Runnable{
 			ImageIcon img = new ImageIcon(getClass().getResource("/Recursos/fondo.jpg"));
 			g.drawImage(img.getImage(), 0, 0, Window.ANCHO, Window.ALTO-50, null);	
 		} catch (Exception e) {
+			e.printStackTrace();
 			g.setColor(Color.BLACK);
 			g.fillRect(0, 0, Window.ANCHO, Window.ALTO);
 		}
