@@ -1,3 +1,3 @@
 mkdir bin
-javac -d bin -sourcepath src src\Presetacion\AgeOfWarGUI.java
+javac -d bin -sourcepath src src\Presentacion\AgeOfWarGUI.java
 java -cp bin Presentacion.AgeOfWarGUI

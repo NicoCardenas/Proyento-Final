@@ -19,8 +19,7 @@ public class Lancero extends Soldado {
 
 	@Override
 	public void mover() {
-		// TODO Auto-generated method stub
-
+		x += velX;
 	}
 
 	@Override

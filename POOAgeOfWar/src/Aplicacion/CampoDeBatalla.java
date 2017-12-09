@@ -19,14 +19,14 @@ public class CampoDeBatalla {
 		tropa.setY(Window.porcentaje(Window.ALTO, 0.52));
 		if (tropa.getUsuario().getTipo() == 1) {
 			tropa.setVelX(1);
-			tropa.setX(Window.porcentaje(Window.ANCHO, 0.07));
+			tropa.setX(Window.porcentaje(Window.ANCHO, 0.05));
 			if (tablero[0] == null) {
 				tablero[0] = tropa;
 				handler.addObject(tropa);
 			}
 		}else {
 			tropa.setVelX(-1);
-			tropa.setX(Window.porcentaje(Window.ANCHO, 0.93)-56);
+			tropa.setX(Window.porcentaje(Window.ANCHO, 0.95)-56);
 			if (tablero[tablero.length-1] == null) {
 				tablero[tablero.length-1] = tropa;
 				handler.addObject(tropa);

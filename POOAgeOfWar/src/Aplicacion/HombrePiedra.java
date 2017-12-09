@@ -1,8 +1,9 @@
 package Aplicacion;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+
+import javax.swing.ImageIcon;
 
 import Presentacion.Handler;
 
@@ -29,8 +30,11 @@ public class HombrePiedra extends Soldado{
 	
 	@Override
 	public void render(Graphics g) {
-		g.setColor(Color.blue);
-		g.fillRect(x, y, 50, 100);
+		ImageIcon img = new ImageIcon(getClass().getResource("/Recursos/cavernicola.gif"));
+		if (jugador.getTipo() == 1)
+			g.drawImage(img.getImage(), x, y, 50, 100, null);
+		else
+			g.drawImage(img.getImage(), x, y, -50, 100, null);
 	}
 	
 	public int getAtaque() {

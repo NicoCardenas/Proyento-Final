@@ -1,6 +1,9 @@
 package Aplicacion;
 
+import java.awt.Graphics;
 import java.awt.Rectangle;
+
+import javax.swing.ImageIcon;
 
 import Presentacion.Handler;
 
@@ -8,8 +11,6 @@ public class Caballero extends Soldado {
 
 	public Caballero(int x, int y, Handler handler, Usuario jugador) {
 		super(x, y , handler, jugador);
-		setX(50);
-		setY(100);
 		ataque = 7;
 		salud = 15;
 		defensa = 10;
@@ -19,8 +20,17 @@ public class Caballero extends Soldado {
 
 	@Override
 	public void mover() {
-		// TODO Auto-generated method stub
-
+		x += velX;
+	}
+	
+	@Override
+	public void render(Graphics g) {
+		ImageIcon img = new ImageIcon(getClass().getResource("/Recursos/caballero.gif"));
+		if (jugador.getTipo() == 1) {
+			g.drawImage(img.getImage(), x+60, y, -120, 120, null);
+		}else {
+			g.drawImage(img.getImage(), x-60, y, 120, 120, null);
+		}
 	}
 
 	@Override

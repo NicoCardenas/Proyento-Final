@@ -1,6 +1,9 @@
 package Aplicacion;
 
+import java.awt.Graphics;
 import java.awt.Rectangle;
+
+import javax.swing.ImageIcon;
 
 import Presentacion.Handler;
 
@@ -8,8 +11,6 @@ public class HombreAcero extends Soldado {
 
 	public HombreAcero(int x, int y, Handler handler, Usuario jugador) {
 		super(x, y , handler, jugador);
-		setX(50);
-		setY(100);
 		ataque = 5;
 		salud = 10;
 		defensa = 5;
@@ -19,18 +20,22 @@ public class HombreAcero extends Soldado {
 
 	@Override
 	public void mover() {
-		// TODO Auto-generated method stub
-		
+		x += velX;
 	}
 	
-	public Rectangle getBonds(){
-		return new Rectangle(x, y);
-	}
-
 	@Override
-	public Rectangle getBounds() {
-		// TODO Auto-generated method stub
-		return null;
+	public void render(Graphics g) {
+		ImageIcon img = new ImageIcon(getClass().getResource("/Recursos/hombreacero.gif"));
+		if (jugador.getTipo() == 1) {
+			g.drawImage(img.getImage(), x, y, 60, 100, null);
+		}else {
+			g.drawImage(img.getImage(), x, y, -60, 100, null);
+		}
+	}
+	
+	@Override
+	public Rectangle getBounds(){
+		return new Rectangle(x, y);
 	}
 
 }

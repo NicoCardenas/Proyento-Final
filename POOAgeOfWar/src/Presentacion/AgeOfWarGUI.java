@@ -7,8 +7,11 @@ import java.awt.image.BufferStrategy;
 
 import javax.swing.ImageIcon;
 
+import Aplicacion.Caballero;
 import Aplicacion.CampoDeBatalla;
 import Aplicacion.Computadora;
+import Aplicacion.DinosaurioPiedra;
+import Aplicacion.HombreAcero;
 import Aplicacion.HombrePiedra;
 import Aplicacion.Jugador;
 
@@ -36,7 +39,7 @@ public class AgeOfWarGUI extends Canvas implements Runnable{
 		hudComputer = new HUD(100, Window.porcentaje(Window.ANCHO, 0.96), Window.porcentaje(Window.ALTO, 0.05), 15, 100);
 		
 		juego.addSoldado(new HombrePiedra(0, 0, handler, new Jugador()));
-		juego.addSoldado(new HombrePiedra(0, 0, handler, new Computadora("novato")));
+		juego.addSoldado(new HombreAcero(0, 0, handler, new Computadora("novato")));
 	}
 	
 	public void run() {
@@ -82,7 +85,6 @@ public class AgeOfWarGUI extends Canvas implements Runnable{
 			ImageIcon img = new ImageIcon(getClass().getResource("/Recursos/fondo.jpg"));
 			g.drawImage(img.getImage(), 0, 0, Window.ANCHO, Window.ALTO-50, null);	
 		} catch (Exception e) {
-			e.printStackTrace();
 			g.setColor(Color.BLACK);
 			g.fillRect(0, 0, Window.ANCHO, Window.ALTO);
 		}
