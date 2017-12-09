@@ -4,15 +4,13 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
-import java.io.File;
 
-import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 
 import Aplicacion.CampoDeBatalla;
 import Aplicacion.Computadora;
 import Aplicacion.HombrePiedra;
 import Aplicacion.Jugador;
-import Aplicacion.Usuario;
 
 public class AgeOfWarGUI extends Canvas implements Runnable{
 
@@ -81,7 +79,8 @@ public class AgeOfWarGUI extends Canvas implements Runnable{
 		Graphics g = bs.getDrawGraphics();
 
 		try {
-			g.drawImage(ImageIO.read(new File("C:/Users/NickZennin/Documents/GitHub/Proyento-Final/POOAgeOfWar/Recursos/fondo.png")), 0, 0, Window.ANCHO, Window.ALTO-50, null);	
+			ImageIcon img = new ImageIcon(getClass().getResource("/Recursos/fondo.jpg"));
+			g.drawImage(img.getImage(), 0, 0, Window.ANCHO, Window.ALTO-50, null);	
 		} catch (Exception e) {
 			g.setColor(Color.BLACK);
 			g.fillRect(0, 0, Window.ANCHO, Window.ALTO);

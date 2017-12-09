@@ -16,7 +16,7 @@ public class CampoDeBatalla {
 	}
 	
 	public void addSoldado(Soldado tropa) {
-		tropa.setY(Window.porcentaje(Window.ALTO, 0.65));
+		tropa.setY(Window.porcentaje(Window.ALTO, 0.52));
 		if (tropa.getUsuario().getTipo() == 1) {
 			tropa.setVelX(1);
 			tropa.setX(Window.porcentaje(Window.ANCHO, 0.07));
