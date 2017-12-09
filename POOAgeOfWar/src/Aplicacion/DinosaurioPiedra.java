@@ -23,11 +23,6 @@ public class DinosaurioPiedra extends Soldado{
 	}
 
 	@Override
-	public void damage(int ataque) {
-		
-	}
-
-	@Override
 	public Rectangle getBounds() {
 		// TODO Auto-generated method stub
 		return null;

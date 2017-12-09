@@ -23,11 +23,6 @@ public class HombrePiedra extends Soldado{
 	}
 
 	@Override
-	public void damage(int ataque) {
-		
-	}
-
-	@Override
 	public Rectangle getBounds() {
 		return new Rectangle(x, y, 50, 100);
 	}

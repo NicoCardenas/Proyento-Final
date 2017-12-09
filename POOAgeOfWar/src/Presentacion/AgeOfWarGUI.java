@@ -9,7 +9,9 @@ import java.io.File;
 import javax.imageio.ImageIO;
 
 import Aplicacion.CampoDeBatalla;
+import Aplicacion.Computadora;
 import Aplicacion.HombrePiedra;
+import Aplicacion.Jugador;
 import Aplicacion.Usuario;
 
 public class AgeOfWarGUI extends Canvas implements Runnable{
@@ -35,8 +37,8 @@ public class AgeOfWarGUI extends Canvas implements Runnable{
 		hudPlayer = new HUD(100, Window.porcentaje(Window.ANCHO, 0.015), Window.porcentaje(Window.ALTO, 0.05), 15, 100);
 		hudComputer = new HUD(100, Window.porcentaje(Window.ANCHO, 0.96), Window.porcentaje(Window.ALTO, 0.05), 15, 100);
 		
-		juego.addSoldado(new HombrePiedra(0, 0, handler, new Usuario(0)));
-		juego.addSoldado(new HombrePiedra(0, 0, handler, new Usuario(1)));
+		juego.addSoldado(new HombrePiedra(0, 0, handler, new Jugador()));
+		juego.addSoldado(new HombrePiedra(0, 0, handler, new Computadora("novato")));
 	}
 	
 	public void run() {

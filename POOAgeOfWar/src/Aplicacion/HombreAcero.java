@@ -22,12 +22,6 @@ public class HombreAcero extends Soldado {
 		// TODO Auto-generated method stub
 		
 	}
-
-	@Override
-	public void damage(int ataque) {
-		// TODO Auto-generated method stub
-		
-	}
 	
 	public Rectangle getBonds(){
 		return new Rectangle(x, y);

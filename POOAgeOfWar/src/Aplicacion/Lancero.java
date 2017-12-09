@@ -24,12 +24,6 @@ public class Lancero extends Soldado {
 	}
 
 	@Override
-	public void damage(int ataque) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
 	public Rectangle getBounds() {
 		// TODO Auto-generated method stub
 		return new Rectangle();

@@ -24,12 +24,6 @@ public class Canion extends Soldado {
 	}
 
 	@Override
-	public void damage(int ataque) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
 	public Rectangle getBounds() {
 		// TODO Auto-generated method stub
 		return null;

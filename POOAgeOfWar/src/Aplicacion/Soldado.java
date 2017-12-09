@@ -37,7 +37,13 @@ public abstract class Soldado extends GameObject{
 	
 	public abstract void mover();
 
-	public abstract void damage(int ataque);
+	public void damage(int ataque) {
+		if (defensa > 0) {
+			defensa -= ataque;
+		}else if (salud > 0 ) {
+			salud -= ataque;
+		}
+	}
 	
 	public void tick() {
 		mover();
