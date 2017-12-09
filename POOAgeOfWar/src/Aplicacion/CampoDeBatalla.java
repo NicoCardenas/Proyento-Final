@@ -37,6 +37,8 @@ public class CampoDeBatalla {
 	public void colicionador() {
 		Soldado[] temp = new Soldado[10];	
 		for (int i = 0; i < tablero.length; i++) {
+			if (tablero[i].getSalud() <= 0)
+				tablero[i] = null;
 			if (tablero[i] != null && tablero[i].getUsuario().getTipo() == 0) {
 				if(i+1 < tablero.length && tablero[i+1] == null) {
 					tablero[i].setVelX(1);
@@ -44,7 +46,7 @@ public class CampoDeBatalla {
 				}else if (i+1 < tablero.length && tablero[i].getUsuario().getTipo() == tablero[i+1].getUsuario().getTipo()){
 					tablero[i].setVelX(0);
 				}else {
-					tablero[i].atacar();
+					tablero[i].damage(tablero[i+1].getAtaque());
 					tablero[i].setVelX(0);
 				}
 			}else if (tablero[i] != null){
@@ -54,7 +56,7 @@ public class CampoDeBatalla {
 				}else if (0 < i-1 && tablero[i].getUsuario().getTipo() == tablero[i-1].getUsuario().getTipo()){
 					tablero[i].setVelX(0);
 				}else {
-					tablero[i].atacar();
+					tablero[i].damage(tablero[i-1].getAtaque());
 					tablero[i].setVelX(0);
 				}
 			}

@@ -23,8 +23,8 @@ public class HombrePiedra extends Soldado{
 	}
 
 	@Override
-	public void atacar() {
-
+	public void damage(int ataque) {
+		
 	}
 
 	@Override
@@ -36,6 +36,10 @@ public class HombrePiedra extends Soldado{
 	public void render(Graphics g) {
 		g.setColor(Color.blue);
 		g.fillRect(x, y, 50, 100);
+	}
+	
+	public int getAtaque() {
+		return ataque;
 	}
 
 }

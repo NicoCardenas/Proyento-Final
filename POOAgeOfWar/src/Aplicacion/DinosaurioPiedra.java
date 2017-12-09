@@ -23,7 +23,7 @@ public class DinosaurioPiedra extends Soldado{
 	}
 
 	@Override
-	public void atacar() {
+	public void damage(int ataque) {
 		
 	}
 

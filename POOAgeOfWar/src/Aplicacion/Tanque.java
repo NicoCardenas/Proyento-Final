@@ -24,9 +24,9 @@ public class Tanque extends Soldado {
 	}
 
 	@Override
-	public void atacar() {
+	public void damage(int ataque) {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
@@ -34,5 +34,6 @@ public class Tanque extends Soldado {
 		// TODO Auto-generated method stub
 		return new Rectangle();
 	}
+
 
 }

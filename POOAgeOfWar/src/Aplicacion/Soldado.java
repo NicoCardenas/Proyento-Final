@@ -37,7 +37,7 @@ public abstract class Soldado extends GameObject{
 	
 	public abstract void mover();
 
-	public abstract void atacar();
+	public abstract void damage(int ataque);
 	
 	public void tick() {
 		mover();
@@ -49,7 +49,7 @@ public abstract class Soldado extends GameObject{
 		g.fillRect(x, y, 50, 100);
 	}
 	
-	private void collision(){
+	/*private void collision(){
 		for (int i = 0; i < handler.objetos.size(); i++) {
 			
 			GameObject tempObjeto = handler.objetos.get(i);
@@ -59,14 +59,14 @@ public abstract class Soldado extends GameObject{
 			if (getBounds().intersects(tempObjeto.getBounds())) {
 				setVelX(0);
 				tempObjeto.setVelX(0);
-				atacar();
+				daño();
 			}else if (!getBounds().intersects(tempObjeto.getBounds())) {
 				setVelX(1);
 				tempObjeto.setVelX(-1);
 			}
 			
 		}
-	}
+	}*/
 
 	//-------------------
 	//Metodos de acceso
