@@ -2,7 +2,6 @@ package Aplicacion;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 
 import Presentacion.AgeOfWarGUI;
 import Presentacion.Handler;
@@ -15,6 +14,8 @@ public abstract class Soldado extends GameObject{
 	//Atributos de clase
 	//-------------------
 
+	protected Usuario jugador;
+	protected Edad id;
 	protected int ataque;
 	protected int salud;
 	protected int defensa;
@@ -25,10 +26,9 @@ public abstract class Soldado extends GameObject{
 	//Constructor
 	//-------------------
 
-	public Soldado(int x, int y, Edad id, Handler handler)	{
-		super(x, y, id, handler);
-		setVelX(1);
-		setVelY(0);
+	public Soldado(int x, int y, Handler handler, Usuario jugador)	{
+		super(x, y, handler);
+		this.jugador = jugador;
 	} 
 	
 	//------------------
@@ -41,7 +41,6 @@ public abstract class Soldado extends GameObject{
 	
 	public void tick() {
 		mover();
-		
 		x = AgeOfWarGUI.clamp(x, 0, Window.ANCHO-56);
 	}
 
@@ -50,10 +49,21 @@ public abstract class Soldado extends GameObject{
 		g.fillRect(x, y, 50, 100);
 	}
 	
-	private void colision(){
+	private void collision(){
 		for (int i = 0; i < handler.objetos.size(); i++) {
 			
 			GameObject tempObjeto = handler.objetos.get(i);
+			
+			System.out.println(getBounds().intersects(tempObjeto.getBounds()));
+			
+			if (getBounds().intersects(tempObjeto.getBounds())) {
+				setVelX(0);
+				tempObjeto.setVelX(0);
+				atacar();
+			}else if (!getBounds().intersects(tempObjeto.getBounds())) {
+				setVelX(1);
+				tempObjeto.setVelX(-1);
+			}
 			
 		}
 	}
@@ -92,5 +102,13 @@ public abstract class Soldado extends GameObject{
 	
 	public int getPrecio(){
 		return precio;
+	}
+	
+	public Edad getId() {
+		return id;
+	}
+	
+	public Usuario getUsuario() {
+		return jugador;
 	}
 }

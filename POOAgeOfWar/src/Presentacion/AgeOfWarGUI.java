@@ -8,8 +8,9 @@ import java.io.File;
 
 import javax.imageio.ImageIO;
 
-import Aplicacion.Edad;
+import Aplicacion.CampoDeBatalla;
 import Aplicacion.HombrePiedra;
+import Aplicacion.Usuario;
 
 public class AgeOfWarGUI extends Canvas implements Runnable{
 
@@ -22,14 +23,20 @@ public class AgeOfWarGUI extends Canvas implements Runnable{
 	HUD hudPlayer;
 	HUD hudComputer;
 	
+	CampoDeBatalla juego;
+	
 	public AgeOfWarGUI(){
+		
 		handler = new Handler();
-		ventana = new Window("POO Age Of War", this);	
+		ventana = new Window("POO Age Of War", this);
+		
+		juego = new CampoDeBatalla(handler);
 		
 		hudPlayer = new HUD(100, Window.porcentaje(Window.ANCHO, 0.015), Window.porcentaje(Window.ALTO, 0.05), 15, 100);
 		hudComputer = new HUD(100, Window.porcentaje(Window.ANCHO, 0.96), Window.porcentaje(Window.ALTO, 0.05), 15, 100);
 		
-		handler.addObject(new HombrePiedra(Window.porcentaje(Window.ALTO, 0.05), Window.porcentaje(Window.ALTO, 0.6), Edad.EDADPIEDRA, handler));
+		juego.addSoldado(new HombrePiedra(0, 0, handler, new Usuario(0)));
+		juego.addSoldado(new HombrePiedra(0, 0, handler, new Usuario(1)));
 	}
 	
 	public void run() {
@@ -55,6 +62,7 @@ public class AgeOfWarGUI extends Canvas implements Runnable{
 			if (System.currentTimeMillis() - minutero > 1000) {
 				minutero += 1000;
 				System.out.println("FPS: " + frames);
+				juego.colicionador();
 				frames = 0;
 			}
 		}
@@ -71,7 +79,7 @@ public class AgeOfWarGUI extends Canvas implements Runnable{
 		Graphics g = bs.getDrawGraphics();
 
 		try {
-			g.drawImage(ImageIO.read(new File("C:/Users/NickZennin/Documents/GitHub/Proyento-Final/POOAgeOfWar/Recursos/fondo.png")), 0, 0, Window.ANCHO, Window.ALTO-100, null);	
+			g.drawImage(ImageIO.read(new File("C:/Users/NickZennin/Documents/GitHub/Proyento-Final/POOAgeOfWar/Recursos/fondo.png")), 0, 0, Window.ANCHO, Window.ALTO-50, null);	
 		} catch (Exception e) {
 			g.setColor(Color.BLACK);
 			g.fillRect(0, 0, Window.ANCHO, Window.ALTO);

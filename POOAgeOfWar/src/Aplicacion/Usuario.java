@@ -1,7 +1,6 @@
 package Aplicacion;
 
-public class Usuario
-{
+public class Usuario {
 
 	//-------------------
 	//Atributos de clase
@@ -17,24 +16,21 @@ public class Usuario
 	//Constructor
 	//-------------------
 
-	public Usuario()
-	{
-
+	public Usuario(int tipo){
+		this.tipo = tipo;
 	} 
 	//Usuario
 
 	//-------------------
-	//Métodos de acceso
+	//Metodos de acceso
 	//-------------------
 
-	public void setTipo(int tipo)
-	{
+	public void setTipo(int tipo) {
 		this.tipo = tipo;
 	}
 
-	public int getTipo()
-	{
-		return tipo;
+	public int getTipo() {
+		return this.tipo;
 	}
 
 }

@@ -1,13 +1,15 @@
 package Aplicacion;
 
-import com.sun.javafx.geom.Rectangle;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Rectangle;
 
 import Presentacion.Handler;
 
 public class HombrePiedra extends Soldado{
 
-	public HombrePiedra(int x, int y, Edad id, Handler handler) {
-		super(x, y , id, handler);
+	public HombrePiedra(int x, int y, Handler handler, Usuario jugador) {
+		super(x, y , handler, jugador);
 		ataque = 1;
 		salud = 10;
 		defensa = 0;
@@ -27,8 +29,13 @@ public class HombrePiedra extends Soldado{
 
 	@Override
 	public Rectangle getBounds() {
-		// TODO Auto-generated method stub
 		return new Rectangle(x, y, 50, 100);
+	}
+	
+	@Override
+	public void render(Graphics g) {
+		g.setColor(Color.blue);
+		g.fillRect(x, y, 50, 100);
 	}
 
 }

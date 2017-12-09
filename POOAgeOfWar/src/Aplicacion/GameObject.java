@@ -1,22 +1,19 @@
 package Aplicacion;
 
 import java.awt.Graphics;
-
-import com.sun.javafx.geom.Rectangle;
+import java.awt.Rectangle;
 
 import Presentacion.Handler;
 
 public abstract class GameObject {
 	
 	protected int x, y;
-	protected Edad id;
 	protected int velX, velY;
 	Handler handler;
 
-	public GameObject(int x, int y, Edad id, Handler handler) {
+	public GameObject(int x, int y, Handler handler) {
 		this.x = x;
 		this.y = y;
-		this.id = id;
 		this.handler = handler;
 	}
 	
@@ -30,10 +27,6 @@ public abstract class GameObject {
 	
 	public void setY(int y) {
 		this.y = y;
-	}
-	
-	public void setId(Edad id) {
-		this.id = id;
 	}
 	
 	public void setVelX(int velocidadX) {
@@ -50,10 +43,6 @@ public abstract class GameObject {
 	
 	public int getY() {
 		return y;
-	}
-	
-	public Edad getId() {
-		return id;
 	}
 	
 	public int getVelX() {
