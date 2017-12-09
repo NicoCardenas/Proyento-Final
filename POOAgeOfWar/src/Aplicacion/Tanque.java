@@ -1,11 +1,13 @@
 package Aplicacion;
 
-import com.sun.javafx.geom.Rectangle;
+import java.awt.Rectangle;
+
+import Presentacion.Handler;
 
 public class Tanque extends Soldado {
 
-	public Tanque(int x, int y, Edad id) {
-		super(x, y, id);
+	public Tanque(int x, int y, Handler handler, Usuario jugador) {
+		super(x, y , handler, jugador);
 		setX(50);
 		setY(100);
 		ataque = 50;
@@ -30,7 +32,7 @@ public class Tanque extends Soldado {
 	@Override
 	public Rectangle getBounds() {
 		// TODO Auto-generated method stub
-		return null;
+		return new Rectangle();
 	}
 
 }

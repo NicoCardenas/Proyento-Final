@@ -1,11 +1,13 @@
 package Aplicacion;
 
-import com.sun.javafx.geom.Rectangle;
+import java.awt.Rectangle;
+
+import Presentacion.Handler;
 
 public class Canion extends Soldado {
 
-	public Canion(int x, int y, Edad id) {
-		super(x, y, id);
+	public Canion(int x, int y, Handler handler, Usuario jugador) {
+		super(x, y , handler, jugador);
 		setX(50);
 		setY(100);
 		ataque = 30;
