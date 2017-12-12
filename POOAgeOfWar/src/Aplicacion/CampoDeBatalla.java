@@ -11,7 +11,7 @@ public class CampoDeBatalla {
 	Handler handler;
 
 	public CampoDeBatalla(Handler handler) {
-		tablero = new Soldado[10];
+		tablero = new Soldado[12];
 		this.handler = handler;
 	}
 	
@@ -20,24 +20,24 @@ public class CampoDeBatalla {
 		if (tropa.getUsuario().getTipo() == 1) {
 			tropa.setVelX(1);
 			tropa.setX(Window.porcentaje(Window.ANCHO, 0.05));
-			if (tablero[0] == null) {
-				tablero[0] = tropa;
+			if (tablero[1] == null) {
+				tablero[1] = tropa;
 				handler.addObject(tropa);
 			}
 		}else {
 			tropa.setVelX(-1);
 			tropa.setX(Window.porcentaje(Window.ANCHO, 0.95)-56);
-			if (tablero[tablero.length-1] == null) {
-				tablero[tablero.length-1] = tropa;
+			if (tablero[tablero.length-2] == null) {
+				tablero[tablero.length-2] = tropa;
 				handler.addObject(tropa);
 			}
 		}
 	}
 	
 	public void colicionador() {
-		Soldado[] temp = new Soldado[10];
+		Soldado[] temp = new Soldado[12];
 		boolean colision = false;
-		for (int i = 0; i < tablero.length; i++) {
+		for (int i = 1; i < tablero.length-1; i++) {
 			if (tablero[i] != null) {
 				if (tablero[i].getSalud() <= 0) {
 					handler.removeObject(tablero[i]);
