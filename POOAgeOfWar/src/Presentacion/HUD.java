@@ -5,7 +5,7 @@ import java.awt.Graphics;
 
 public class HUD {
 	
-	public static int HEALT, HEALT_INIT_;
+	public int HEALT;
 	int x, y, ancho, alto;
 	
 

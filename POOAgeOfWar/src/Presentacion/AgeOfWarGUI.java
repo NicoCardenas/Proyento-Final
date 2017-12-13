@@ -7,10 +7,8 @@ import java.awt.image.BufferStrategy;
 
 import javax.swing.ImageIcon;
 
-import Aplicacion.Caballero;
 import Aplicacion.CampoDeBatalla;
 import Aplicacion.Computadora;
-import Aplicacion.DinosaurioPiedra;
 import Aplicacion.HombreAcero;
 import Aplicacion.HombrePiedra;
 import Aplicacion.Jugador;
@@ -23,10 +21,11 @@ public class AgeOfWarGUI extends Canvas implements Runnable{
 	boolean running = false;
 	Handler handler;
 	Window ventana;
-	HUD hudPlayer;
-	HUD hudComputer;
 	
 	CampoDeBatalla juego;
+	Menu menu;
+	
+	public state stateGame = state.Menu;
 	
 	public AgeOfWarGUI(){
 		
@@ -34,12 +33,15 @@ public class AgeOfWarGUI extends Canvas implements Runnable{
 		ventana = new Window("POO Age Of War", this);
 		
 		juego = new CampoDeBatalla(handler);
-		
-		hudPlayer = new HUD(100, Window.porcentaje(Window.ANCHO, 0.015), Window.porcentaje(Window.ALTO, 0.05), 15, 100);
-		hudComputer = new HUD(100, Window.porcentaje(Window.ANCHO, 0.96), Window.porcentaje(Window.ALTO, 0.05), 15, 100);
+		menu = new Menu();
 		
 		juego.addSoldado(new HombrePiedra(0, 0, handler, new Jugador()));
 		juego.addSoldado(new HombreAcero(0, 0, handler, new Computadora("novato")));
+	}
+	
+	public enum state{
+		Menu,
+		Game;
 	}
 	
 	public void run() {
@@ -65,6 +67,9 @@ public class AgeOfWarGUI extends Canvas implements Runnable{
 			if (System.currentTimeMillis() - minutero > 1000) {
 				minutero += 1000;
 				System.out.println("FPS: " + frames);
+				if (juego.win() != -1){
+					stop();
+				}
 				juego.colicionador();
 				frames = 0;
 			}
@@ -80,28 +85,34 @@ public class AgeOfWarGUI extends Canvas implements Runnable{
 		}
 		
 		Graphics g = bs.getDrawGraphics();
-
-		try {
-			ImageIcon img = new ImageIcon(getClass().getResource("/Recursos/fondo.jpg"));
-			g.drawImage(img.getImage(), 0, 0, Window.ANCHO, Window.ALTO-50, null);	
-		} catch (Exception e) {
-			g.setColor(Color.BLACK);
-			g.fillRect(0, 0, Window.ANCHO, Window.ALTO);
+		if (stateGame == state.Game) {
+			try {
+				ImageIcon img = new ImageIcon(getClass().getResource("/Recursos/fondo.jpg"));
+				g.drawImage(img.getImage(), 0, 0, Window.ANCHO, Window.ALTO-50, null);	
+			} catch (Exception e) {
+				g.setColor(Color.BLACK);
+				g.fillRect(0, 0, Window.ANCHO, Window.ALTO);
+			}
+			
+			handler.render(g);
+			juego.render(g);
+		}else if (stateGame == state.Menu) {
+			menu.render(g);
 		}
 		
-		handler.render(g);
-		
-		hudPlayer.render(g);
-		hudComputer.render(g);
 		
 		g.dispose();
 		bs.show();
 	}
 
 	private void tick() {
-		handler.tick();
-		hudPlayer.tick();
-		hudComputer.tick();
+		if (stateGame == state.Game) {
+			handler.tick();
+			juego.tick();
+		}else if (stateGame == state.Menu) {
+			menu.tick();
+		}
+		
 	}
 
 	public synchronized void start(){
