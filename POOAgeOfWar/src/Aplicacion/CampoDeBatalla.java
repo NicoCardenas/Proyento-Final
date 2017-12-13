@@ -70,7 +70,7 @@ public class CampoDeBatalla {
 		}
 	}
 	
-	public void colicionador() {
+	public void colisionador() {
 		Soldado[] temp = new Soldado[12];
 		boolean colision = false;
 		for (int i = 1; i < tablero.length-1; i++) {
