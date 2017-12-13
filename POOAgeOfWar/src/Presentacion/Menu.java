@@ -8,14 +8,40 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.ImageIcon;
 
+import Presentacion.AgeOfWarGUI.state;
+
 public class Menu extends MouseAdapter {
+	
+	AgeOfWarGUI game;
+	
+	public Menu(AgeOfWarGUI game) {
+		this.game = game;
+	}
 
 	public void mousePressed(MouseEvent e){
+		int x = e.getX();
+		int y = e.getY();
 		
+		int width = Window.porcentaje(Window.ANCHO, 0.2);
+		int height = Window.porcentaje(Window.ALTO, 0.1);
+		
+		if (mouseOver(x, y, Window.porcentaje(Window.ANCHO, 0.5)-(width/2), Window.porcentaje(Window.ALTO, 0.5), width, height)) {
+			game.stateGame = state.Game;
+		}
 	}
 	
 	public void mouseReleased(MouseEvent e){
 		
+	}
+	
+	private boolean mouseOver(int nx, int  ny, int x, int y, int width, int height) {
+		boolean res = false;
+		if (nx > x && nx < x + width) {
+			if (ny > y && ny < y + height) {
+				res = true;
+			}
+		}
+		return res;
 	}
 	
 	public void tick(){
@@ -39,15 +65,15 @@ public class Menu extends MouseAdapter {
 		g.drawString("Menu", Window.porcentaje(Window.ANCHO, 0.5)-fuente.getSize(), Window.porcentaje(Window.ALTO, 0.3));
 		
 		int width = Window.porcentaje(Window.ANCHO, 0.2);
-		int heigth = Window.porcentaje(Window.ALTO, 0.1);
+		int height = Window.porcentaje(Window.ALTO, 0.1);
 		
 		g.setColor(Color.DARK_GRAY);
 		g.setFont(fuente2);
-		g.drawRect(Window.porcentaje(Window.ANCHO, 0.5)-(width/2), Window.porcentaje(Window.ALTO, 0.5), width, heigth);
-		g.drawString("Jugador VS Computadora", Window.porcentaje(Window.ANCHO, 0.5)-80, Window.porcentaje(Window.ALTO, 0.5)+(heigth/2));
+		g.drawRect(Window.porcentaje(Window.ANCHO, 0.5)-(width/2), Window.porcentaje(Window.ALTO, 0.5), width, height);
+		g.drawString("Jugador VS Computadora", Window.porcentaje(Window.ANCHO, 0.5)-80, Window.porcentaje(Window.ALTO, 0.5)+(height/2));
 		
 		g.setColor(Color.DARK_GRAY);
-		g.drawRect(Window.porcentaje(Window.ANCHO, 0.5)-(width/2), Window.porcentaje(Window.ALTO, 0.65), width, heigth);
-		g.drawString("Jugador VS Jugador", Window.porcentaje(Window.ANCHO, 0.5)-60, Window.porcentaje(Window.ALTO, 0.65)+(heigth/2));
+		g.drawRect(Window.porcentaje(Window.ANCHO, 0.5)-(width/2), Window.porcentaje(Window.ALTO, 0.65), width, height);
+		g.drawString("Jugador VS Jugador", Window.porcentaje(Window.ANCHO, 0.5)-60, Window.porcentaje(Window.ALTO, 0.65)+(height/2));
 	}
 }

@@ -33,7 +33,9 @@ public class AgeOfWarGUI extends Canvas implements Runnable{
 		ventana = new Window("POO Age Of War", this);
 		
 		juego = new CampoDeBatalla(handler);
-		menu = new Menu();
+		menu = new Menu(this);
+		
+		this.addMouseListener(menu);
 		
 		juego.addSoldado(new HombrePiedra(0, 0, handler, new Jugador()));
 		juego.addSoldado(new HombreAcero(0, 0, handler, new Computadora("novato")));
