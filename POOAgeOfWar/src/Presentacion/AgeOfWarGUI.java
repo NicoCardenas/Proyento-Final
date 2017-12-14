@@ -8,25 +8,26 @@ import java.awt.image.BufferStrategy;
 import javax.swing.ImageIcon;
 
 import Aplicacion.CampoDeBatalla;
-import Aplicacion.Computadora;
-import Aplicacion.HombreAcero;
-import Aplicacion.HombrePiedra;
 import Aplicacion.Jugador;
 
 public class AgeOfWarGUI extends Canvas implements Runnable{
 
 	private static final long serialVersionUID = 2391458510354790381L;
 	
-	Thread thread;
-	boolean running = false;
-	Handler handler;
-	Window ventana;
+	private Thread thread;
+	private boolean running = false;
+	private Handler handler;
+	private Window ventana;
 	
-	CampoDeBatalla juego;
-	Menu menu;
-	JuegoJvsJ juegoJvsJ;
+	private CampoDeBatalla juego;
+	private Menu menu;
+	private JuegoJvsJ juegoJvsJ;
+	private JuegoJvsC juegoJvsC;
+	private String nombre1;
+	private String nombre2;
 	
 	public state stateGame = state.Menu;
+	public boolean pushButton = false;
 	
 	public AgeOfWarGUI(){
 		
@@ -36,8 +37,11 @@ public class AgeOfWarGUI extends Canvas implements Runnable{
 		juego = new CampoDeBatalla(handler, this);
 		menu = new Menu(this);
 		juegoJvsJ = new JuegoJvsJ(this, handler, juego);
+		juegoJvsC = new JuegoJvsC(this, handler, juego);
 		
 		this.addMouseListener(menu);
+		this.addMouseListener(juegoJvsC);
+		this.addMouseListener(juegoJvsJ);
 	}
 	
 	public enum state{
@@ -74,9 +78,15 @@ public class AgeOfWarGUI extends Canvas implements Runnable{
 				if (juego.win() != -1){
 					stop();
 				}
-				juego.colisionador();
+				if (!pushButton) {
+					juego.colisionador();
+				}
+				if (stateGame == state.Opcion2) {
+					juego.SetUsuario2(new Jugador());
+				}
 				frames = 0;
 			}
+			pushButton = false;
 		}
 		stop();
 	}
@@ -106,23 +116,24 @@ public class AgeOfWarGUI extends Canvas implements Runnable{
 				g.setColor(Color.BLACK);
 				g.fillRect(0, 0, Window.ANCHO, Window.ALTO);
 			}
+			juegoJvsC.render(g);
 		}else if (stateGame == state.Menu || stateGame == state.Opcion1 || stateGame == state.Opcion2) {
 			menu.render(g);
 		}
-		
 		
 		g.dispose();
 		bs.show();
 	}
 
 	private void tick() {
-		if (stateGame == state.GameJvsC) {
+		nombre1 = menu.getNombre1();
+		nombre2 = menu.getNombre2();
+		if (stateGame == state.GameJvsC || stateGame == state.GameJvsJ) {
 			handler.tick();
 			juego.tick();
-		}else if (stateGame == state.Menu) {
+		}else if (stateGame == state.Menu || stateGame == state.Opcion1 || stateGame == state.Opcion2) {
 			menu.tick();
-		}
-		
+		}	
 	}
 
 	public synchronized void start(){
@@ -138,6 +149,14 @@ public class AgeOfWarGUI extends Canvas implements Runnable{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public String getNombre1() {
+		return nombre1;
+	}
+	
+	public String getNombre2() {
+		return nombre2;
 	}
 	
 	public static int clamp(int valor, int min, int max) {

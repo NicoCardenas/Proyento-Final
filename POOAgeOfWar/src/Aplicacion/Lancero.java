@@ -1,6 +1,9 @@
 package Aplicacion;
 
+import java.awt.Graphics;
 import java.awt.Rectangle;
+
+import javax.swing.ImageIcon;
 
 import Presentacion.Handler;
 
@@ -20,6 +23,15 @@ public class Lancero extends Soldado {
 	@Override
 	public void mover() {
 		x += velX;
+	}
+	
+	@Override
+	public void render(Graphics g) {
+		ImageIcon img = new ImageIcon(getClass().getResource("/Recursos/cazador.gif"));
+		if (jugador.getTipo() == 1)
+			g.drawImage(img.getImage(), x, y, 50, 100, null);
+		else
+			g.drawImage(img.getImage(), x, y, -50, 100, null);
 	}
 
 	@Override

@@ -7,18 +7,15 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 import Presentacion.AgeOfWarGUI.state;
 
 public class Menu extends MouseAdapter {
 	
-	AgeOfWarGUI game;
-	String nombre1;
-	String nombre2;
+	private AgeOfWarGUI game;
+	private String nombre1;
+	private String nombre2;
 	
 	public Menu(AgeOfWarGUI game) {
 		this.game = game;
@@ -36,13 +33,14 @@ public class Menu extends MouseAdapter {
 			nombre1 = JOptionPane.showInputDialog("Nombre del jugador 1");
 		}else if (mouseOver(x, y, Window.porcentaje(Window.ANCHO, 0.5)-(width/2), Window.porcentaje(Window.ALTO, 0.65), width, height) && game.stateGame == state.Menu) {
 			game.stateGame = state.Opcion2;
+			nombre1 = JOptionPane.showInputDialog("Nombre del jugador 1");
+			nombre2 = JOptionPane.showInputDialog("Nombre del jugador 2");
+			System.out.println(nombre2);
 		}else if (mouseOver(x, y, Window.porcentaje(Window.ANCHO, 0.5)-(width/2), Window.porcentaje(Window.ALTO, 0.3), width, height) && game.stateGame == state.Opcion1) {
 			game.stateGame = state.GameJvsC;
 		}else if (mouseOver(x, y, Window.porcentaje(Window.ANCHO, 0.5)-(width/2), Window.porcentaje(Window.ALTO, 0.45), width, height) && game.stateGame == state.Opcion1) {
 			game.stateGame = state.GameJvsC;
 		}else if (mouseOver(x, y, Window.porcentaje(Window.ANCHO, 0.5)-(width/2), Window.porcentaje(Window.ALTO, 0.55), width, height) && game.stateGame == state.Opcion2) {
-			nombre1 = JOptionPane.showInputDialog("Nombre del jugador 1");
-			nombre2 = JOptionPane.showInputDialog("Nombre del jugador 2");
 			game.stateGame = state.GameJvsJ;
 		}
 	}
@@ -129,5 +127,13 @@ public class Menu extends MouseAdapter {
 		g.setFont(fuente);
 		g.drawRect(Window.porcentaje(Window.ANCHO, 0.5)-(width/2), Window.porcentaje(Window.ALTO, 0.55), width, height);
 		g.drawString("Jugar", Window.porcentaje(Window.ANCHO, 0.5)-fuente.getSize(), Window.porcentaje(Window.ALTO, 0.55)+(height/2));
+	}
+	
+	public String getNombre1() {
+		return nombre1;
+	}
+	
+	public String getNombre2() {
+		return nombre2;
 	}
 }

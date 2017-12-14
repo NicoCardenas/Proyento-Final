@@ -10,14 +10,14 @@ import Presentacion.Window;
 
 public class CampoDeBatalla {
 	
-	Soldado[] tablero;
-	Edificio[] jugadores;
-	Usuario usuario1;
-	Usuario usuario2;
-	Handler handler;
-	HUD hudPlayer;
-	HUD hudComputer;
-	AgeOfWarGUI game;
+	private Soldado[] tablero;
+	private Edificio[] jugadores;
+	private Usuario usuario1;
+	private Usuario usuario2;
+	private Handler handler;
+	private HUD hudPlayer;
+	private HUD hudComputer;
+	private AgeOfWarGUI game;
 
 	public CampoDeBatalla(Handler handler, AgeOfWarGUI game) {
 		tablero = new Soldado[12];
@@ -25,7 +25,7 @@ public class CampoDeBatalla {
 		this.handler = handler;
 		this.game = game;
 		usuario1 = new Jugador();
-		usuario2 = new Computadora("novata");
+		usuario2 = new Computadora("ingenuo");
 		addEdificios();
 	}
 	
@@ -132,11 +132,43 @@ public class CampoDeBatalla {
 	public int win(){
 		int winner = -1; 
 		if (jugadores[0].getVida() <= 0){
-			winner = usuario1.getTipo();
-		}else if (jugadores[1].getVida() <= 0){
 			winner = usuario2.getTipo();
+		}else if (jugadores[1].getVida() <= 0){
+			winner = usuario1.getTipo();
 		}
 		return winner;
+	}
+	
+	public Edad getEdificioEdad1() {
+		return jugadores[0].getEdad();
+	}
+	
+	public Edad getEdificioEdad2() {
+		return jugadores[1].getEdad();
+	}
+	
+	public Edificio getEdificio1() {
+		return jugadores[0];
+	}
+	
+	public Edificio getEdificio2() {
+		return jugadores[1];
+	}
+	
+	public Usuario getUsuario1() {
+		return usuario1;
+	}
+	
+	public void SetUsuario1(Usuario usuario) {
+		this.usuario1 = usuario;
+	}
+	
+	public Usuario getUsuario2() {
+		return usuario2;
+	}
+	
+	public void SetUsuario2(Usuario usuario) {
+		this.usuario2 = usuario;
 	}
 	
 }

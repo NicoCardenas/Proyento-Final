@@ -3,12 +3,10 @@ package Aplicacion;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
-import java.awt.image.BufferStrategy;
 
 import javax.swing.ImageIcon;
 
 import Presentacion.Handler;
-import Presentacion.Window;
 
 public class Edificio extends GameObject{
 
@@ -65,6 +63,14 @@ public class Edificio extends GameObject{
 		return oro;
 	}
 	
+	public void setEdad(Edad edad) {
+		this.edad = edad;
+	}
+	
+	public Edad getEdad() {
+		return edad;
+	}
+	
 	public void damage(int ataque){
 		vida -= ataque;
 	}
@@ -91,7 +97,7 @@ public class Edificio extends GameObject{
 			}else if (edad == Edad.EDADMODERNA){
 				img = new ImageIcon(getClass().getResource("/Recursos/militar2.jpeg"));
 			}
-			g.drawImage(img.getImage(), 0, 0, Window.ANCHO, Window.ALTO-50, null);
+			g.drawImage(img.getImage(), x, y, 100, 100, null);
 		} catch (Exception e) {
 			g.setColor(Color.black);
 			g.fillRect(x, y, 100, 100);
