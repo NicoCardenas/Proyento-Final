@@ -2,6 +2,8 @@ package Aplicacion;
 
 import java.awt.Graphics;
 
+import Presentacion.AgeOfWarGUI;
+import Presentacion.AgeOfWarGUI.state;
 import Presentacion.HUD;
 import Presentacion.Handler;
 import Presentacion.Window;
@@ -15,11 +17,13 @@ public class CampoDeBatalla {
 	Handler handler;
 	HUD hudPlayer;
 	HUD hudComputer;
+	AgeOfWarGUI game;
 
-	public CampoDeBatalla(Handler handler) {
+	public CampoDeBatalla(Handler handler, AgeOfWarGUI game) {
 		tablero = new Soldado[12];
 		jugadores = new Edificio[2];
 		this.handler = handler;
+		this.game = game;
 		usuario1 = new Jugador();
 		usuario2 = new Computadora("novata");
 		addEdificios();
@@ -48,7 +52,13 @@ public class CampoDeBatalla {
 	public void render(Graphics g){
 		hudPlayer.render(g);
 		hudComputer.render(g);
-		g.drawString("oro: "+ jugadores[0].getOro(), Window.porcentaje(Window.ANCHO, 0.07), Window.porcentaje(Window.ALTO, 0.1));
+		if(game.stateGame == state.GameJvsC) {
+			g.drawString("oro: "+ jugadores[0].getOro(), Window.porcentaje(Window.ANCHO, 0.07), Window.porcentaje(Window.ALTO, 0.1));
+		}else if (game.stateGame == state.GameJvsJ) {
+			g.drawString("oro: "+ jugadores[0].getOro(), Window.porcentaje(Window.ANCHO, 0.07), Window.porcentaje(Window.ALTO, 0.1));
+			g.drawString("oro: "+ jugadores[1].getOro(), Window.porcentaje(Window.ANCHO, 0.8), Window.porcentaje(Window.ALTO, 0.1));
+		}
+		
 	}
 	
 	public void addSoldado(Soldado tropa) {
@@ -120,13 +130,13 @@ public class CampoDeBatalla {
 	}
 
 	public int win(){
-		int winer = -1; 
+		int winner = -1; 
 		if (jugadores[0].getVida() <= 0){
-			winer = usuario1.getTipo();
+			winner = usuario1.getTipo();
 		}else if (jugadores[1].getVida() <= 0){
-			winer = usuario2.getTipo();
+			winner = usuario2.getTipo();
 		}
-		return winer;
+		return winner;
 	}
 	
 }

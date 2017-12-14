@@ -3,8 +3,10 @@ package Aplicacion;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.awt.image.BufferStrategy;
 
-import Presentacion.HUD;
+import javax.swing.ImageIcon;
+
 import Presentacion.Handler;
 import Presentacion.Window;
 
@@ -78,8 +80,22 @@ public class Edificio extends GameObject{
 
 	@Override
 	public void render(Graphics g) {
-		g.setColor(Color.black);
-		g.fillRect(x, y, 100, 100);
+		try {
+			ImageIcon img = null;
+			if (edad == Edad.EDADPIEDRA) {
+				img = new ImageIcon(getClass().getResource("/Recursos/cueva.jpeg"));
+			}else if (edad == Edad.EDADMEDIA){
+				img = new ImageIcon(getClass().getResource("/Recursos/castillo.jpeg"));
+			}else if (edad == Edad.EDADINDUSTRIAL){
+				img = new ImageIcon(getClass().getResource("/Recursos/iglecia.jpeg"));
+			}else if (edad == Edad.EDADMODERNA){
+				img = new ImageIcon(getClass().getResource("/Recursos/militar2.jpeg"));
+			}
+			g.drawImage(img.getImage(), 0, 0, Window.ANCHO, Window.ALTO-50, null);
+		} catch (Exception e) {
+			g.setColor(Color.black);
+			g.fillRect(x, y, 100, 100);
+		}
 	}
 
 	@Override

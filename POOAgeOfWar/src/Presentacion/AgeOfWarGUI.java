@@ -24,6 +24,7 @@ public class AgeOfWarGUI extends Canvas implements Runnable{
 	
 	CampoDeBatalla juego;
 	Menu menu;
+	JuegoJvsJ juegoJvsJ;
 	
 	public state stateGame = state.Menu;
 	
@@ -32,18 +33,19 @@ public class AgeOfWarGUI extends Canvas implements Runnable{
 		handler = new Handler();
 		ventana = new Window("POO Age Of War", this);
 		
-		juego = new CampoDeBatalla(handler);
+		juego = new CampoDeBatalla(handler, this);
 		menu = new Menu(this);
+		juegoJvsJ = new JuegoJvsJ(this, handler, juego);
 		
 		this.addMouseListener(menu);
-		
-		juego.addSoldado(new HombrePiedra(0, 0, handler, new Jugador()));
-		juego.addSoldado(new HombreAcero(0, 0, handler, new Computadora("novato")));
 	}
 	
 	public enum state{
 		Menu,
-		Game;
+		Opcion1,
+		Opcion2,
+		GameJvsJ,
+		GameJvsC;
 	}
 	
 	public void run() {
@@ -72,7 +74,7 @@ public class AgeOfWarGUI extends Canvas implements Runnable{
 				if (juego.win() != -1){
 					stop();
 				}
-				juego.colicionador();
+				juego.colisionador();
 				frames = 0;
 			}
 		}
@@ -87,7 +89,7 @@ public class AgeOfWarGUI extends Canvas implements Runnable{
 		}
 		
 		Graphics g = bs.getDrawGraphics();
-		if (stateGame == state.Game) {
+		if (stateGame == state.GameJvsJ) {
 			try {
 				ImageIcon img = new ImageIcon(getClass().getResource("/Recursos/fondo.jpg"));
 				g.drawImage(img.getImage(), 0, 0, Window.ANCHO, Window.ALTO-50, null);	
@@ -95,10 +97,16 @@ public class AgeOfWarGUI extends Canvas implements Runnable{
 				g.setColor(Color.BLACK);
 				g.fillRect(0, 0, Window.ANCHO, Window.ALTO);
 			}
-			
-			handler.render(g);
-			juego.render(g);
-		}else if (stateGame == state.Menu) {
+			juegoJvsJ.render(g);
+		}else if (stateGame == state.GameJvsC) {
+			try {
+				ImageIcon img = new ImageIcon(getClass().getResource("/Recursos/fondo.jpg"));
+				g.drawImage(img.getImage(), 0, 0, Window.ANCHO, Window.ALTO-50, null);	
+			} catch (Exception e) {
+				g.setColor(Color.BLACK);
+				g.fillRect(0, 0, Window.ANCHO, Window.ALTO);
+			}
+		}else if (stateGame == state.Menu || stateGame == state.Opcion1 || stateGame == state.Opcion2) {
 			menu.render(g);
 		}
 		
@@ -108,7 +116,7 @@ public class AgeOfWarGUI extends Canvas implements Runnable{
 	}
 
 	private void tick() {
-		if (stateGame == state.Game) {
+		if (stateGame == state.GameJvsC) {
 			handler.tick();
 			juego.tick();
 		}else if (stateGame == state.Menu) {

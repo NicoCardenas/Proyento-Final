@@ -15,12 +15,13 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 public class Window extends Canvas{
 
 	private static final long serialVersionUID = 3702118492471104108L;
 	
-	static JFrame ventana;
+	public static JFrame ventana;
 	
 	public static int ANCHO_PREFERIDO;
     public static int ALTO_PREFERIDO;
@@ -40,6 +41,10 @@ public class Window extends Canvas{
     
     //Archivo
     JFileChooser file;
+    
+    //TextBox
+    JTextField nombre1;
+    JTextField nombre2;
     
 	public Window(String titulo, AgeOfWarGUI ventanaJuego){
 		ventana = new JFrame(titulo);
