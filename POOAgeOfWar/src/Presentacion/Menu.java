@@ -17,10 +17,17 @@ public class Menu extends MouseAdapter {
 	private String nombre1;
 	private String nombre2;
 	
+	/**
+	 * Constructor
+	 */
 	public Menu(AgeOfWarGUI game) {
 		this.game = game;
 	}
 
+	/**
+	 * Metodo que determina una accion del mouse
+	 * @param e MouseEvent(Evento realizado con el mouse)
+	 */
 	public void mousePressed(MouseEvent e){
 		int x = e.getX();
 		int y = e.getY();
@@ -45,6 +52,9 @@ public class Menu extends MouseAdapter {
 		}
 	}
 	
+	/*
+	 * Metodo que permite determinar si el mouse esta sobre un area.
+	 */
 	private boolean mouseOver(int nx, int  ny, int x, int y, int width, int height) {
 		boolean res = false;
 		if (nx > x && nx < x + width) {
@@ -55,10 +65,17 @@ public class Menu extends MouseAdapter {
 		return res;
 	}
 	
+	/**
+	 * Metodo para actualizar datos
+	 */
 	public void tick(){
 		
 	}
 	
+	/**
+	 * Metodo para renderizar 
+	 * @param g Graficos
+	 */
 	public void render(Graphics g){
 		try {
 			ImageIcon img = new ImageIcon(getClass().getResource("/Recursos/fondoMenu.jpeg"));
@@ -77,6 +94,9 @@ public class Menu extends MouseAdapter {
 		}
 	}
 	
+	/*
+	 * Metodo que renderiza los elementos del menu
+	 */
 	private void menu(Graphics g) {
 		//Fuentes
 		Font fuente = new Font("Arial", Font.BOLD, 50);
@@ -99,6 +119,9 @@ public class Menu extends MouseAdapter {
 		g.drawString("Jugador VS Jugador", Window.porcentaje(Window.ANCHO, 0.5)-60, Window.porcentaje(Window.ALTO, 0.65)+(height/2));
 	}
 	
+	/*
+	 * Metodo que grafica una de las pantallas de seleccion
+	 */
 	private void opcion1(Graphics g) {
 		//Fuente
 		Font fuente = new Font("Arial", 0, 15);
@@ -116,6 +139,9 @@ public class Menu extends MouseAdapter {
 		g.drawString("Tacaño", Window.porcentaje(Window.ANCHO, 0.5)-fuente.getSize(), Window.porcentaje(Window.ALTO, 0.45)+(height/2));
 	}
 	
+	/*
+	 * Metodo que grafica una de las pantallas de seleccion
+	 */
 	private void opcion2(Graphics g) {
 		//Fuente
 		Font fuente = new Font("Arial", 0, 15);
@@ -129,10 +155,18 @@ public class Menu extends MouseAdapter {
 		g.drawString("Jugar", Window.porcentaje(Window.ANCHO, 0.5)-fuente.getSize(), Window.porcentaje(Window.ALTO, 0.55)+(height/2));
 	}
 	
+	/**
+	 * retorna el nombre del jugador
+	 * @return String nombre
+	 */
 	public String getNombre1() {
 		return nombre1;
 	}
 	
+	/**
+	 * retorna el nombre del segundo jugador
+	 * @return String nombre
+	 */
 	public String getNombre2() {
 		return nombre2;
 	}

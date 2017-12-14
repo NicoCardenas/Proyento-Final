@@ -19,6 +19,11 @@ public class CampoDeBatalla {
 	private HUD hudComputer;
 	private AgeOfWarGUI game;
 
+	/**
+	 * Constructor
+	 * @param handler
+	 * @param game
+	 */
 	public CampoDeBatalla(Handler handler, AgeOfWarGUI game) {
 		tablero = new Soldado[12];
 		jugadores = new Edificio[2];

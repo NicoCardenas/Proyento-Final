@@ -23,12 +23,22 @@ public class JuegoJvsJ extends MouseAdapter {
 	private Handler handler;
 	private CampoDeBatalla juego;
 	
+	/**
+	 * Constructor
+	 * @param game
+	 * @param handler
+	 * @param juego
+	 */
 	public JuegoJvsJ(AgeOfWarGUI game, Handler handler, CampoDeBatalla juego) {
 		this.game = game;
 		this.handler = handler;
 		this.juego = juego;
 	}
 	
+	/**
+	 * Metodo que permite deteminar las acciones del mouse
+	 * @param e Evento del mouse
+	 */
 	public void mousePressed(MouseEvent e){
 		int x = e.getX();
 		int y = e.getY();
@@ -98,6 +108,9 @@ public class JuegoJvsJ extends MouseAdapter {
 		}
 	}
 	
+	/*
+	 * Metodo que determina si el mouse esta en un area
+	 */
 	private boolean mouseOver(int nx, int  ny, int x, int y, int width, int height) {
 		boolean res = false;
 		if (nx > x && nx < x + width) {
@@ -108,6 +121,10 @@ public class JuegoJvsJ extends MouseAdapter {
 		return res;
 	}
 	
+	/**
+	 * Metodo para renderizar
+	 * @param g Graficos
+	 */
 	public void render(Graphics g){
 		handler.render(g);
 		juego.render(g);

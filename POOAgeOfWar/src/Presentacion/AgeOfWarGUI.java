@@ -14,6 +14,7 @@ public class AgeOfWarGUI extends Canvas implements Runnable{
 
 	private static final long serialVersionUID = 2391458510354790381L;
 	
+	//Variables
 	private Thread thread;
 	private boolean running = false;
 	private Handler handler;
@@ -29,6 +30,9 @@ public class AgeOfWarGUI extends Canvas implements Runnable{
 	public state stateGame = state.Menu;
 	public boolean pushButton = false;
 	
+	/**
+	 * Constructor
+	 */
 	public AgeOfWarGUI(){
 		
 		handler = new Handler();
@@ -44,6 +48,9 @@ public class AgeOfWarGUI extends Canvas implements Runnable{
 		this.addMouseListener(juegoJvsJ);
 	}
 	
+	/**
+	 * Enumeracion de estados
+	 */
 	public enum state{
 		Menu,
 		Opcion1,
@@ -52,6 +59,10 @@ public class AgeOfWarGUI extends Canvas implements Runnable{
 		GameJvsC;
 	}
 	
+	/**
+	 * Metodo de actualizacion
+	 * @see java.lang.Runnable#run()
+	 */
 	public void run() {
 		long ultimoTiempo = System.nanoTime();
 		double cantidadTicks = 60.0;
@@ -91,6 +102,9 @@ public class AgeOfWarGUI extends Canvas implements Runnable{
 		stop();
 	}
 	
+	/*
+	 * Metodo de renderizacion
+	 */
 	private void render() {
 		BufferStrategy bs = this.getBufferStrategy();
 		if (bs == null) {
@@ -124,7 +138,10 @@ public class AgeOfWarGUI extends Canvas implements Runnable{
 		g.dispose();
 		bs.show();
 	}
-
+	
+	/*
+	 * Metodo de actualizcion de datos
+	 */
 	private void tick() {
 		nombre1 = menu.getNombre1();
 		nombre2 = menu.getNombre2();
@@ -136,12 +153,18 @@ public class AgeOfWarGUI extends Canvas implements Runnable{
 		}	
 	}
 
+	/**
+	 * Metodo para comenzar un hilo
+	 */
 	public synchronized void start(){
 		thread = new Thread(this);
 		thread.start();
 		running = true;
 	}
 
+	/**
+	 * Metodo para Finalizar un hilo
+	 */
 	public synchronized void stop(){
 		try {
 			thread.join();
@@ -151,14 +174,28 @@ public class AgeOfWarGUI extends Canvas implements Runnable{
 		}
 	}
 	
+	/**
+	 * retorna una cadena que contiene el nombre del jugador
+	 * @return String nombre del usuario.
+	 */
 	public String getNombre1() {
 		return nombre1;
 	}
 	
+	/**
+	 * retorna una cadena que contiene el nombre del segundo jugador
+	 * @return String nombre del usuario.
+	 */
 	public String getNombre2() {
 		return nombre2;
 	}
 	
+	/**
+	 * @param valor valor a calcular.
+	 * @param min limite inferior.
+	 * @param max limite superior.
+	 * @return int numero entre un rango especifico
+	 */
 	public static int clamp(int valor, int min, int max) {
 		if (valor >= max) {
 			valor = max;

@@ -46,6 +46,9 @@ public class Window extends Canvas{
     JTextField nombre1;
     JTextField nombre2;
     
+    /**
+     * Constructor
+     */
 	public Window(String titulo, AgeOfWarGUI ventanaJuego){
 		ventana = new JFrame(titulo);
 		juego = ventanaJuego;
@@ -53,6 +56,9 @@ public class Window extends Canvas{
 		acciones();
 	}
 	
+	/*
+	 * Prepara los elementos de la ventana 
+	 */
 	private void ajustes() {
 		// Tamaño de la pantalla
 		GraphicsDevice graphicsDevice = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
@@ -78,6 +84,9 @@ public class Window extends Canvas{
 		juego.start();
 	}
 	
+	/*
+	 * Prepara las acciones correspondientes a los elementos de la ventana
+	 */
 	private void acciones(){
 		
 		ventana.addWindowListener(new WindowAdapter() {
@@ -130,7 +139,7 @@ public class Window extends Canvas{
         file = new JFileChooser();
     }
     
-	/*
+	/**
 	 * Metodo para mostrar una confirmación antes de salir
 	 */
 	public static void exitAccion(){
@@ -138,7 +147,12 @@ public class Window extends Canvas{
 			System.exit(0);
 	}
 
-	//Metodo que retorna el porcentage de un numero entero 
+	/**
+	 * Metodo que retorna el porcentage de un numero entero 
+	 * @param numero numero para determinar el porcentaje
+	 * @param porcentaje porcentaje a calcular
+	 * @return porcentaje corespondiente al valor ingrasado
+	 */
 	public static int porcentaje(int numero, double porcentaje) {
 		return (int)(numero*porcentaje);
 	}
