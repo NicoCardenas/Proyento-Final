@@ -12,6 +12,7 @@ import Aplicacion.DinosaurioPiedra;
 import Aplicacion.Edad;
 import Aplicacion.HombreAcero;
 import Aplicacion.HombrePiedra;
+import Aplicacion.Jugador;
 import Aplicacion.Lancero;
 import Aplicacion.Marine;
 import Aplicacion.Soldado;
@@ -74,6 +75,7 @@ public class JuegoJvsJ extends MouseAdapter {
 			juego.addSoldado(tropa);
 		}else if (mouseOver(x, y, Window.porcentaje(Window.ANCHO, 0.17), Window.porcentaje(Window.ALTO, 0.15), width, height)) {
 			
+			juego.AvanzarEdad(juego.getUsuario1());
 		}
 		
 		//Jugador 2
@@ -81,30 +83,32 @@ public class JuegoJvsJ extends MouseAdapter {
 			game.pushButton = true;
 			Soldado tropa = null;
 			if (juego.getEdificioEdad2() == Edad.EDADPIEDRA) {
-				tropa = new HombrePiedra(0, 0, handler, juego.getUsuario1());
+				tropa = new HombrePiedra(0, 0, handler, juego.getUsuario2());
 			}else if (juego.getEdificioEdad2() == Edad.EDADMEDIA) {
-				tropa = new HombreAcero(0, 0, handler, juego.getUsuario1());
+				tropa = new HombreAcero(0, 0, handler, juego.getUsuario2());
 			}else if (juego.getEdificioEdad2() == Edad.EDADINDUSTRIAL) {
-				tropa = new Lancero(0, 0, handler, juego.getUsuario1());
+				tropa = new Lancero(0, 0, handler, juego.getUsuario2());
 			}else if (juego.getEdificioEdad2() == Edad.EDADMODERNA) {
-				tropa = new Marine(0, 0, handler, juego.getUsuario1());
+				tropa = new Marine(0, 0, handler, juego.getUsuario2());
 			}
+			
 			juego.addSoldado(tropa);
 		}else if (mouseOver(x, y, Window.porcentaje(Window.ANCHO, 0.85), Window.porcentaje(Window.ALTO, 0.15), width, height)) {
 			game.pushButton = true;
 			Soldado tropa = null;
 			if (juego.getEdificioEdad2() == Edad.EDADPIEDRA) {
-				tropa = new DinosaurioPiedra(0, 0, handler, juego.getUsuario1());
+				tropa = new DinosaurioPiedra(0, 0, handler, juego.getUsuario2());
 			}else if (juego.getEdificioEdad2() == Edad.EDADMEDIA) {
-				tropa = new Caballero(0, 0, handler, juego.getUsuario1());
+				tropa = new Caballero(0, 0, handler, juego.getUsuario2());
 			}else if (juego.getEdificioEdad2() == Edad.EDADINDUSTRIAL) {
-				tropa = new Canion(0, 0, handler, juego.getUsuario1());
+				tropa = new Canion(0, 0, handler, juego.getUsuario2());
 			}else if (juego.getEdificioEdad2() == Edad.EDADMODERNA) {
-				tropa = new Tanque(0, 0, handler, juego.getUsuario1());
+				tropa = new Tanque(0, 0, handler, juego.getUsuario2());
 			}
 			juego.addSoldado(tropa);
-		}else if (mouseOver(x, y, Window.porcentaje(Window.ANCHO, 0.9), Window.porcentaje(Window.ALTO, 0.15), width, height)) {
 			
+		}else if (mouseOver(x, y, Window.porcentaje(Window.ANCHO, 0.9), Window.porcentaje(Window.ALTO, 0.15), width, height)) {
+			juego.AvanzarEdad(juego.getUsuario2());
 		}
 	}
 	

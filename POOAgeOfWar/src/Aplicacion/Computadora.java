@@ -5,7 +5,7 @@ public class Computadora extends Usuario {
 	String dificultad;
 
 	public Computadora(String dificultad) {
-		super(0);
+		super(Usuario.COMPUTADORA);
 		this.dificultad = dificultad;
 	}
 

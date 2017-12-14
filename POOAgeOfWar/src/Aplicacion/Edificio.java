@@ -29,8 +29,8 @@ public class Edificio extends GameObject{
 		super(x, y, handler);
 		this.edad = Edad.EDADPIEDRA;
 		this.vida = 50;
-		this.defensa = 0;
-		this.oro = 0;
+		this.defensa = 10;
+		this.oro = 100;
 		this.usuario = usuario;
 	}
 	
@@ -72,7 +72,11 @@ public class Edificio extends GameObject{
 	}
 	
 	public void damage(int ataque){
-		vida -= ataque;
+		if (defensa > 0) {
+			defensa -= ataque;
+		}else if (vida > 0 ) {
+			vida -= ataque;
+		}
 	}
 
 	@Override

@@ -8,9 +8,10 @@ import org.junit.Test;
 
 import Aplicacion.Edificio;
 import Aplicacion.Jugador;
+import Aplicacion.Usuario;
 import Presentacion.Handler;
 
-public class TestEdificion {
+public class TestEdificio {
 
 	@Before
 	public void setUp() throws Exception {
@@ -18,7 +19,7 @@ public class TestEdificion {
 	
 	@Test
 	public void deberiaSuamarOro() {
-		Edificio temp = new Edificio(0, 0, new Handler(), new Jugador());
+		Edificio temp = new Edificio(0, 0, new Handler(), new Jugador(Usuario.COMPUTADORA));
 		int OroInit = temp.getOro();
 		for (int i = 0; i < 900; i++) {
 			temp.tick();
@@ -28,7 +29,7 @@ public class TestEdificion {
 
 	@Test
 	public void deberiaRecibirDamage() {
-		Edificio temp = new Edificio(0, 0, new Handler(), new Jugador());
+		Edificio temp = new Edificio(0, 0, new Handler(), new Jugador(Usuario.COMPUTADORA));
 		int vidaInit = temp.getVida();
 		temp.damage(5);
 		assertTrue(temp.getVida() < vidaInit);

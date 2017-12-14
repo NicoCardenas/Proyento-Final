@@ -54,7 +54,7 @@ public abstract class Soldado extends GameObject{
 		g.setColor(Color.WHITE);
 		g.fillRect(x, y, 50, 100);
 	}
-	
+	//Colision grafica
 	/*private void collision(){
 		for (int i = 0; i < handler.objetos.size(); i++) {
 			

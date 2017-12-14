@@ -6,9 +6,11 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 import Aplicacion.CampoDeBatalla;
 import Aplicacion.Jugador;
+import Aplicacion.Usuario;
 
 public class AgeOfWarGUI extends Canvas implements Runnable{
 
@@ -87,13 +89,14 @@ public class AgeOfWarGUI extends Canvas implements Runnable{
 				minutero += 1000;
 				System.out.println("FPS: " + frames);
 				if (juego.win() != -1){
+					JOptionPane.showMessageDialog(null, "Ganador "+ juego.win(), "Ganador", JOptionPane.INFORMATION_MESSAGE);
 					stop();
 				}
 				if (!pushButton) {
 					juego.colisionador();
 				}
 				if (stateGame == state.Opcion2) {
-					juego.SetUsuario2(new Jugador());
+					juego.SetUsuario2(new Jugador(Usuario.JUGADOR2));
 				}
 				frames = 0;
 			}

@@ -2,8 +2,8 @@ package Aplicacion;
 
 public class Jugador extends Usuario {
 
-	public Jugador() {
-		super(1);
+	public Jugador(int tipo) {
+		super(tipo);
 	}
 
 }
